@@ -200,3 +200,15 @@ VALUES
 (6, 5, 350.00),
 (7, 3, 150.00)
  
+ 
+ SELECT consulta.datahora,
+ a.nomeAnimal,
+ c.nomeCliente,
+ veterinario.nomeVeterinario
+ FROM cliente c
+ INNER JOIN animal a
+ ON c.idCliente = a.idCliente
+ INNER JOIN consulta 
+ ON a.idanimal = consulta.idAnimal
+ INNER JOIN veterinario
+ ON consulta.idVeterinario = veterinario.idVeterinario
