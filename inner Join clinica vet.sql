@@ -54,6 +54,8 @@ VALUES
 (1,3,150.00),
 (2,1,90.00);
 
+SELECT*FROM tiposervico
+
 DROP TABLE consultatiposervico 
 CREATE table consultatiposervico 
 SHOW TABLES 
@@ -63,44 +65,44 @@ SELECT*FROM consulta
 
 INSERT INTO consulta (idAnimal, idVeterinario, datahora, pago, formapagto, qtdvezes, valortotal, valorpago)
 VALUES
-(9, 2, '2026-03-10 14:30:00', 0, 'Dinheiro', '0', 90.00, NULL),
-(10, 2, '2026-01-25 09:00:00', 1, 'Pix', '0', 150.00, 150.00), 
-(11, 2, '2026-03-29 18:00:00', 0, 'Crédito', '2', 300.00, NULL);
+(1, 2, '2026-03-10 14:30:00', 0, 'Dinheiro', '0', 90.00, NULL),
+(2, 2, '2026-01-25 09:00:00', 1, 'Pix', '0', 150.00, 150.00), 
+(3, 2, '2026-03-29 18:00:00', 0, 'Crédito', '2', 300.00, NULL);
 
 INSERT INTO consultatiposervico (idconsulta,idtiposervico, valorservico)
 VALUES
-(3, 1, 90.00), 
-(4, 3, 150.00), 
-(5, 4, 300.00);
+(6, 1, 90.00), 
+(7, 3, 150.00), 
+(8, 4, 300.00);
 
 INSERT INTO consulta (idAnimal, idVeterinario, dataHora, pago, formaPagto, qtdVezes, valorTotal, valorPago)
 VALUES
-(10, 3, '2026-03-03 10:00', 1, 'PIX', 1, 350.00, 350.00),
-(11, 3, '2026-03-04 12:00', 1, 'Credito', 2, 150.00, 150.00)
+(2, 3, '2026-03-03 10:00', 1, 'PIX', 1, 350.00, 350.00),
+(3, 3, '2026-03-04 12:00', 1, 'Credito', 2, 150.00, 150.00)
 INSERT INTO consultatiposervico(idConsulta, idTipoServico, valorServico)
 VALUES
-(15, 5, 350.00),
-(16, 3, 150.00);
+(9, 5, 350.00),
+(10, 3, 150.00);
 
 insert into consulta(idAnimal, idVeterinario, dataHora, pago, formaPagto, qtdVezes, valorTotal, valorPago)
 
 values
 
-(9,1,'2026-03-14 13:00:00', 'S','dinheiro',1,'300.00','300.00'),
+(1,1,'2026-03-14 13:00:00', 'S','dinheiro',1,'300.00','300.00'),
 
-(10,3,'2026-03-14 16:30:00', 'S','credito',3,'300.00','300.00'),
+(2,3,'2026-03-14 16:30:00', 'S','credito',3,'300.00','300.00'),
 
-(11,3,'2026-03-17 08:10:00', 'S','pix',1,'150.00','150.00');
+(3,3,'2026-03-17 08:10:00', 'S','pix',1,'150.00','150.00');
  
 insert into consultatiposervico(idConsulta,idTipoServico ,valorServico )
 
 values
 
-(17,4,'300.00'),
+(11,4,'300.00'),
 
-(18,4,'300.00'),
+(12,4,'300.00'),
 
-(19,3,'150.00');
+(13,3,'150.00');
  
 SELECT consulta.datahora,
  a.nomeAnimal,
@@ -127,9 +129,9 @@ select veterinario.nomeVeterinario,
  consulta.dataHora,
  animal.nomeAnimal
  FROM veterinario
- LEFT JOIN consulta
+ inner JOIN consulta
  ON veterinario.idVeterinario = consulta.idVeterinario
- left JOIN Animal 
+ inner JOIN Animal 
  ON animal.idAnimal = consulta.idAnimal;
  
  /* Trazer a quantidade de consultas executadas na clínica ao longo de todo o período */
@@ -176,3 +178,21 @@ Ex.: Bidu --------- 3 consultas
      GROUP BY nomeAnimal
      HAVING COUNT(idConsulta)>3
      ORDER BY COUNT(idConsulta) desc
+     
+     /* Listar a quantidade de animais por espécie*/
+     
+     SELECT especie, COUNT(idAnimal)AS 'Qtd' FROM animal
+    GROUP BY especie 
+    
+    /*Listar todas as cidades aonde tenho cliente*/
+    
+    SELECT DISTINCT cidade  FROM cliente
+    
+    SELECT DISTINCT raça FROM animal
+    WHERE especie = 'cachorro'
+     
+     /*Paginação - limitar quantidade de linhas*/
+     
+     SELECT*FROM veterinario
+     ORDER BY idveterinario desc
+     LIMIT 2

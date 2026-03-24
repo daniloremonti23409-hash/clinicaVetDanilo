@@ -200,6 +200,10 @@ VALUES
 (6, 5, 350.00),
 (7, 3, 150.00)
  
+SHOW TABLES;
+DROP DATABASE clinicavet;
+
+ 
  
  SELECT consulta.datahora,
  a.nomeAnimal,
