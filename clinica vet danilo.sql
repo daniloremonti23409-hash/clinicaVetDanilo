@@ -21,6 +21,12 @@ ddi VARCHAR (5) NOT NULL,
 ddd VARCHAR (5) NOT NULL,
 numero CHAR (9) NOT NULL
 )
+
+ALTER TABLE contatotelefonico
+DROP PRIMARY KEY;
+
+ALTER TABLE contatotelefonico
+MODIFY idcontatotelefonico INT PRIMARY KEY NOT NULL AUTO_INCREMENT;
 /*alterando a tabela sem fk*/
 
 ALTER TABLE contatoTelefonico

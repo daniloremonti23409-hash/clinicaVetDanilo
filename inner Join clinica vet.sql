@@ -196,3 +196,20 @@ Ex.: Bidu --------- 3 consultas
      SELECT*FROM veterinario
      ORDER BY idveterinario desc
      LIMIT 2
+     
+     SHOW tables
+     
+     UPDATE cliente
+     SET celular = '13 998876543'
+     WHERE idCliente = 1
+     
+     UPDATE cliente
+     SET celular = '13 996876295'
+     WHERE idCliente = 2
+     
+     SELECT * FROM contatotelefonico
+     SELECT * FROM cliente
+     
+     INSERT INTO contatotelefonico (idCliente,ddd,numero)
+     VALUES (1,'13','99887654'),
+            (2,'13','99687629');
